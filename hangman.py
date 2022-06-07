@@ -75,7 +75,7 @@ def print_menu():
                 incorrect_input()
         elif choice == 2:
             print(manual)
-            input('press any key to go back')
+            input('\tpress any key to go back')
         elif choice == 3:
             print('Bye Bye!')
             sleep(3)
