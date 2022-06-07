@@ -16,4 +16,20 @@ def play(word, lives):
     print('\nLives:', end='')
     print('@' * lives)
 
-play('grecja', 7)
+#play('grecja', 7)
+
+
+def random_word():
+    """ function create list of lines from file and select,
+     random line from file and return it.
+
+    Arguments: # all to be implemented in future
+        file: source of file if not in the same directory
+        word_length: (int) length of characters
+    :return: word(str)
+        """
+    with open('countries-and-capitals.txt', 'r') as words:
+        words_list = words.readlines()
+        word = random.choice(words_list)
+    return word
+
