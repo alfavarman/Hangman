@@ -1,5 +1,7 @@
+import os
 import random
-from menu_file import Menu
+from manual import manual
+from time import sleep
 
 
 def play(word, lives):
@@ -33,22 +35,56 @@ def random_word():
     return word
 
 
-def print_menu(list_menu: list):
-    """function to print menu
-    from file
+def incorrect_input():
+    print('Invalid Input. Select number from Menu')
 
-    Arguments:
-        file:name of file with menu
-        :param list_menu: """
 
-    for index, (choice1, choice2) in enumerate(list_menu):
-        print(f'{index +1 }: {choice1}')
-    print('0: Exit')
-    choice = input(int())
+def print_menu():
+    """function to print menu"""
 
-    if choice ==
+    while True:
+        choice = int(input('''
+        Welcome to Hangman Countries & Capitols
+        ***************************************
+        1: Play
+        2: Manual
+        3: Exit
+        :
+        '''))
 
-print_menu(Menu)
+        if choice == 1:
+            choice2 = int(input("""
+            1: Hard
+            2: Medium
+            3: Easy
+            
+            4: Back
+            """))
+            if choice2 == 1:
+                play(random_word(), 3)
+                break
+            elif choice2 == 2:
+                play(random_word(), 5)
+                break
+            elif choice2 == 3:
+                play(random_word(), 7)
+                break
+            elif choice2 == 4:
+                os.system('clear')
+            else:
+                incorrect_input()
+        elif choice == 2:
+            print(manual)
+        elif choice == 3:
+            print('Bye Bye!')
+            sleep(3)
+            exit()
+        else:
+            incorrect_input()
 
-# play(random_word(), 5)
+
+
+print_menu()
+
+
 

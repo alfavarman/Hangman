@@ -1,5 +1,5 @@
 Menu = [
-    ("Start",
+    ("Play",
      [
          (1, "Hard"),
          (2, "Medium"),
