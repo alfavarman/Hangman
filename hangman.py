@@ -1,4 +1,5 @@
 import random
+from menu_file import Menu
 
 
 def play(word, lives):
@@ -16,8 +17,6 @@ def play(word, lives):
     print('\nLives:', end='')
     print('@' * lives)
 
-#play('grecja', 7)
-
 
 def random_word():
     """ function create list of lines from file and select,
@@ -32,4 +31,24 @@ def random_word():
         words_list = words.readlines()
         word = random.choice(words_list)
     return word
+
+
+def print_menu(list_menu: list):
+    """function to print menu
+    from file
+
+    Arguments:
+        file:name of file with menu
+        :param list_menu: """
+
+    for index, (choice1, choice2) in enumerate(list_menu):
+        print(f'{index +1 }: {choice1}')
+    print('0: Exit')
+    choice = input(int())
+
+    if choice ==
+
+print_menu(Menu)
+
+# play(random_word(), 5)
 
