@@ -62,26 +62,26 @@ def print_menu():
             """))
             if choice2 == 1:
                 play(random_word(), 3)
-                break
+                break # to remove once def play is completed
             elif choice2 == 2:
                 play(random_word(), 5)
-                break
+                break # to remove once def play is completed
             elif choice2 == 3:
                 play(random_word(), 7)
-                break
+                break # to remove once def play is completed
             elif choice2 == 4:
                 os.system('clear')
             else:
                 incorrect_input()
         elif choice == 2:
             print(manual)
+            input('press any key to go back')
         elif choice == 3:
             print('Bye Bye!')
             sleep(3)
             exit()
         else:
             incorrect_input()
-
 
 
 print_menu()
