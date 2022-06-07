@@ -11,13 +11,36 @@ def play(word, lives):
     :param word:(str) word to guess
     :param lives:(int) number limiting mistakes
     """
-
+    print(word) # for testing purposes to be removed
     print('Word: ', end='')
     for char in word:
         print('_', end='')
 
-    print('\nLives:', end='')
+    print('\nLives: ', end='')
     print('@' * lives)
+    guess_set = set()
+
+    while lives > 0:
+        letter = input('choose letter: ')
+        if not letter.isalpha():
+            incorrect_input("Input must be single letter.")
+        elif len(letter) != 1:
+            incorrect_input('Type one latin alphabet letter')
+        else:
+            guess_set.add(letter)
+            if letter in word:
+                for char in word:
+                    if char != letter:
+                        print('_', end='')
+                    else:
+                        print(letter, end='')
+                print('\nLives: ', end='')
+                print('@' * lives)
+                guess_set.add(letter)
+            else:
+                lives -= 1
+                print('\nLives: ', end='')
+                print('@' * lives)
 
 
 def random_word():
@@ -35,8 +58,9 @@ def random_word():
     return word
 
 
-def incorrect_input():
+def incorrect_input(message):
     print('Invalid Input. Select number from Menu')
+    print(message)
 
 
 def print_menu():
@@ -49,26 +73,25 @@ def print_menu():
         1: Play
         2: Manual
         3: Exit
-        :
         '''))
 
         if choice == 1:
             choice2 = int(input("""
-            1: Hard
-            2: Medium
-            3: Easy
-            
-            4: Back
-            """))
+        1: Hard
+        2: Medium
+        3: Easy
+        
+        4: Back
+        """))
             if choice2 == 1:
                 play(random_word(), 3)
-                break # to remove once def play is completed
+                #break # to remove once def play is completed
             elif choice2 == 2:
                 play(random_word(), 5)
-                break # to remove once def play is completed
+                #break # to remove once def play is completed
             elif choice2 == 3:
                 play(random_word(), 7)
-                break # to remove once def play is completed
+                #break # to remove once def play is completed
             elif choice2 == 4:
                 os.system('clear')
             else:
