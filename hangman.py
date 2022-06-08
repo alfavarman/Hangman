@@ -44,6 +44,8 @@ def play(word, lives):
                         print('_', end='')
                     else:
                         print(char, end='')
+                    if guess_set.__contains__(word_set):
+                        print('Congratulation! You Guessed Word! Your friend is Saved')
                 print()
                 print('\nLives: ', end='')
                 print('@' * lives)
