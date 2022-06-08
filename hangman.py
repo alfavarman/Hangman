@@ -13,20 +13,22 @@ def play(word, lives):
     """
     print(word) # for testing purposes to be removed
     word_set = set(word.casefold())
-    print(word_set)
     guess_set = set()
-    print('\nLives: ', end='')
-    print('@' * lives)
-    print('Word: ', end='')
-    for char in word:
-        if char not in guess_set:
-            print('_', end='')
-        else:
-            print(char, end='')
-    print()
 
-    while lives >= 0:
-        letter = input('choose letter: ').casefold()
+    while lives > -1:
+        for char in word:
+            if char.casefold() not in guess_set:
+                print('_', end='')
+            else:
+                print(char, end='')
+
+        print()
+        if word_set.issubset(guess_set):
+            print('Congratulation! You Guessed Word! No Man will be hang today!')
+            break
+        print('\nLives: ', end='')
+        print('@' * lives)
+        letter = input('choose letter: ')
         if not letter.isalpha():
             incorrect_input("Input must be single letter.")
         elif len(letter) != 1:
@@ -38,17 +40,8 @@ def play(word, lives):
                 guess_set.add(letter)
                 if letter not in word:
                     lives -= 1
-
-                for char in word:
-                    if char.casefold() not in guess_set:
-                        print('_', end='')
-                    else:
-                        print(char, end='')
-                    if guess_set.__contains__(word_set):
-                        print('Congratulation! You Guessed Word! Your friend is Saved')
-                print()
-                print('\nLives: ', end='')
-                print('@' * lives)
+        if lives == -1:
+            print('Sorry Your Friend is Hanged. Game Over!')
 
 
 def random_word():
@@ -74,7 +67,7 @@ def incorrect_input(message):
 
 def print_menu():
     """function to print menu"""
-
+    # bug: invalid input at menu(Hard Medium Easy) moves back to main menu - should stay same menu)
     while True:
         choice = int(input('''
         Welcome to Hangman Countries & Capitols
