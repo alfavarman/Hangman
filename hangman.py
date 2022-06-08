@@ -65,45 +65,51 @@ def incorrect_input(message):
     print(message)
 
 
+def good_bye(sec: int = 3):
+    """function to terminate program after (default 2) sec after printing goodbye"""
+    print('\t\tGood Bye! Thank You')
+    sleep(sec)
+    exit()
+
+
 def print_menu():
     """function to print menu"""
     # bug: invalid input at menu(Hard Medium Easy) moves back to main menu - should stay same menu)
     while True:
-        choice = int(input('''
+        choice = input('''
         Welcome to Hangman Countries & Capitols
         ***************************************
         1: Play
         2: Manual
         3: Exit
-        '''))
-
-        if choice == 1:
-            choice2 = int(input("""
+        ''')
+        if choice == '1':
+            choice2 = input("""
         1: Hard
         2: Medium
         3: Easy
         
         4: Back
-        """))
-            if choice2 == 1:
+        """)
+            if int(choice2) == 1:
                 play(random_word(), 3)
-            elif choice2 == 2:
+            elif int(choice2) == 2:
                 play(random_word(), 5)
-            elif choice2 == 3:
+            elif int(choice2) == 3:
                 play(random_word(), 7)
-            elif choice2 == 4:
-                os.system('clear')  # Error to fix
+            elif int(choice2) == 4:
+                pass
             else:
-                incorrect_input('')  # to fix default message in def incorrect message
-        elif choice == 2:
+                incorrect_input('select number from menu or type quit')  # to fix default message in def incorrect message
+        elif choice == '2':
             print(manual)
             input('\t\tpress any key to go back')
-        elif choice == 3:
-            print('\t\tBye Bye!')
-            sleep(3)
-            exit()
+        elif choice == '3':
+            good_bye()
+        elif choice.casefold == 'quit':
+            good_bye()
         else:
-            incorrect_input('')  # to fix default message in def incorrect message
+            incorrect_input('select from menu')  # to fix default message in def incorrect message
 
 
 print_menu()

@@ -18,7 +18,7 @@ And there's also a chance to exhibit your ASCII art talent!
 - ASCII art
 
 ## Tasks
-
+j
 
 1. Implement the `play(word, lives)` function as a basic hangman game.
 
