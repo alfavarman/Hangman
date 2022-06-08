@@ -12,8 +12,7 @@ def play(word, lives):
     :param lives:(int) number limiting mistakes
     """
     print(word) # for testing purposes to be removed
-    word_set = set(word)
-    #word_set.remove('\n')
+    word_set = set(word.casefold())
     print(word_set)
     guess_set = set()
     print('\nLives: ', end='')
@@ -27,7 +26,7 @@ def play(word, lives):
     print()
 
     while lives >= 0:
-        letter = input('choose letter: ')
+        letter = input('choose letter: ').casefold()
         if not letter.isalpha():
             incorrect_input("Input must be single letter.")
         elif len(letter) != 1:
@@ -41,7 +40,7 @@ def play(word, lives):
                     lives -= 1
 
                 for char in word:
-                    if char not in guess_set:
+                    if char.casefold() not in guess_set:
                         print('_', end='')
                     else:
                         print(char, end='')
