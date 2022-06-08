@@ -98,6 +98,9 @@ def print_menu():
                 play(random_word(), 7)
             elif choice2 == '4':
                 pass
+            elif choice2.casefold() == 'quit':
+                good_bye()
+                break
             else:
                 incorrect_input('select number from menu or type quit')  # to fix default message in def incorrect message
         elif choice == '2':
