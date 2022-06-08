@@ -69,7 +69,6 @@ def good_bye(sec: int = 3):
     """function to terminate program after (default 2) sec after printing goodbye"""
     print('\t\tGood Bye! Thank You')
     sleep(sec)
-    exit()
 
 
 def print_menu():
@@ -91,23 +90,25 @@ def print_menu():
         
         4: Back
         """)
-            if int(choice2) == 1:
+            if choice2 == '1':
                 play(random_word(), 3)
-            elif int(choice2) == 2:
+            elif choice2 == '2':
                 play(random_word(), 5)
-            elif int(choice2) == 3:
+            elif choice2 == '3':
                 play(random_word(), 7)
-            elif int(choice2) == 4:
+            elif choice2 == '4':
                 pass
             else:
                 incorrect_input('select number from menu or type quit')  # to fix default message in def incorrect message
         elif choice == '2':
-            print(manual)
+            print('\t' + manual)
             input('\t\tpress any key to go back')
         elif choice == '3':
             good_bye()
+            break
         elif choice.casefold == 'quit':
             good_bye()
+            break
         else:
             incorrect_input('select from menu')  # to fix default message in def incorrect message
 
