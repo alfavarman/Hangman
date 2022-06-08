@@ -49,6 +49,7 @@ def play(word, lives):
                 print('\nLives: ', end='')
                 print('@' * lives)
 
+
 def random_word():
     """ function create list of lines from file and select,
      random line from file and return it.
