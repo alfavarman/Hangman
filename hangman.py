@@ -16,15 +16,15 @@ def play(word, lives):
     #word_set.remove('\n')
     print(word_set)
     guess_set = set()
+    print('\nLives: ', end='')
+    print('@' * lives)
     print('Word: ', end='')
     for char in word:
         if char not in guess_set:
             print('_', end='')
         else:
             print(char, end='')
-
-    print('\nLives: ', end='')
-    print('@' * lives)
+    print()
 
     while lives >= 0:
         letter = input('choose letter: ')
@@ -37,20 +37,17 @@ def play(word, lives):
                 print(f'The letter: "{letter}" you tried already. Try another one!')
             else:
                 guess_set.add(letter)
-                if letter in word:
-                    for char in word:
-                        if char not in guess_set:
-                            print('_', end='')
-                        else:
-                            print(char, end='')
-                    print('\nLives: ', end='')
-                    print('@' * lives)
-                    guess_set.add(letter)
-                else:
+                if letter not in word:
                     lives -= 1
-                    print('\nLives: ', end='')
-                    print('@' * lives)
 
+                for char in word:
+                    if char not in guess_set:
+                        print('_', end='')
+                    else:
+                        print(char, end='')
+                print()
+                print('\nLives: ', end='')
+                print('@' * lives)
 
 def random_word():
     """ function create list of lines from file and select,
@@ -95,17 +92,14 @@ def print_menu():
         """))
             if choice2 == 1:
                 play(random_word(), 3)
-                #break # to remove once def play is completed
             elif choice2 == 2:
                 play(random_word(), 5)
-                #break # to remove once def play is completed
             elif choice2 == 3:
                 play(random_word(), 7)
-                #break # to remove once def play is completed
             elif choice2 == 4:
-                os.system('clear')
+                os.system('clear')  # Error to fix
             else:
-                incorrect_input()
+                incorrect_input('')  # to fix default message in def incorrect message
         elif choice == 2:
             print(manual)
             input('\tpress any key to go back')
@@ -114,7 +108,7 @@ def print_menu():
             sleep(3)
             exit()
         else:
-            incorrect_input()
+            incorrect_input('')  # to fix default message in def incorrect message
 
 
 print_menu()
