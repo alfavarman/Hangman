@@ -102,9 +102,9 @@ def print_menu():
                 incorrect_input('')  # to fix default message in def incorrect message
         elif choice == 2:
             print(manual)
-            input('\tpress any key to go back')
+            input('\t\tpress any key to go back')
         elif choice == 3:
-            print('Bye Bye!')
+            print('\t\tBye Bye!')
             sleep(3)
             exit()
         else:
