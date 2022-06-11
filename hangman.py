@@ -116,7 +116,8 @@ def print_menu():
             incorrect_input('select from menu')  # to fix default message in def incorrect message
 
 
-print_menu()
+if __name__ == '__main__':
+    print_menu()
 
 
 
