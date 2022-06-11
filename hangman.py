@@ -117,6 +117,7 @@ def print_menu():
 
 
 if __name__ == '__main__':
+    os.system('clear')
     print_menu()
 
 
