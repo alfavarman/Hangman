@@ -2,6 +2,15 @@ import os
 import random
 from manual import manual
 from time import sleep
+from hangman_graphic import graphics
+
+
+def load_graphic(pic_number):
+    print(graphics[pic_number])
+
+
+def clrscr():
+    os.system('clear')
 
 
 def play(word, lives):
@@ -11,26 +20,32 @@ def play(word, lives):
     :param word:(str) word to guess
     :param lives:(int) number limiting mistakes
     """
-    print(word) # for testing purposes to be removed
+    os.system('clear')
+    print(word)  # for testing purposes to be removed
     word_set = set(word.casefold())
     guess_set = set()
+    # max_lives = lives
 
     while lives > -1:
+        load_graphic(lives)
+        print('\t\t\t', end='')
         for char in word:
             if char.casefold() not in guess_set:
                 print('_', end='')
             else:
                 print(char, end='')
 
-        print()
+        # print()
         if word_set.issubset(guess_set):
             print('Congratulation! You Guessed Word! No Man will be hang today!')
             break
-        print('\nLives: ', end='')
+        print('\n\t\tLives: ', end='')
         print('@' * lives)
         letter = input('choose letter: ')
         if not letter.isalpha():
             incorrect_input("Input must be single letter.")
+        elif letter.casefold() == 'quit':
+            break
         elif len(letter) != 1:
             incorrect_input('Type one latin alphabet letter')
         else:
@@ -38,10 +53,13 @@ def play(word, lives):
                 print(f'The letter: "{letter}" you tried already. Try another one!')
             else:
                 guess_set.add(letter)
-                if letter not in word:
+                if letter not in word_set:
                     lives -= 1
-        if lives == -1:
-            print('Sorry Your Friend is Hanged. Game Over!')
+        if lives == 0:
+            load_graphic(0)
+            print('Sorry Your Friend is Hanged!')
+            sleep(3)
+            break
 
 
 def random_word():
@@ -74,6 +92,7 @@ def good_bye(sec: int = 3):
 def print_menu():
     """function to print menu"""
     # bug: invalid input at menu(Hard Medium Easy) moves back to main menu - should stay same menu)
+    clrscr()
     while True:
         choice = input('''
         Welcome to Hangman Countries & Capitols
@@ -83,6 +102,7 @@ def print_menu():
         3: Exit
         ''')
         if choice == '1':
+            clrscr()
             choice2 = input("""
         1: Hard
         2: Medium
@@ -102,7 +122,7 @@ def print_menu():
                 good_bye()
                 break
             else:
-                incorrect_input('select number from menu or type quit')  # to fix default message in def incorrect message
+                incorrect_input('select number from menu or type quit')
         elif choice == '2':
             print('\t' + manual)
             input('\t\tpress any key to go back')
@@ -113,12 +133,10 @@ def print_menu():
             good_bye()
             break
         else:
-            incorrect_input('select from menu')  # to fix default message in def incorrect message
+            incorrect_input('select from menu')
 
 
 if __name__ == '__main__':
-    os.system('clear')
     print_menu()
-
 
 
