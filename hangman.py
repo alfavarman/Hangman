@@ -9,8 +9,9 @@ def load_graphic(pic_number):
     print(graphics[pic_number])
 
 
-def clrscr():
-    os.system('clear')
+def cleared_screen():            # this function is useless, was implemented with another statement.
+    os.system('clear')      # which (statement) has joined other function. all changed to os.system('clear')
+# can't see reason to keep function just for one line of command. dont see it to be pythonic
 
 
 def play(word, lives):
@@ -20,13 +21,13 @@ def play(word, lives):
     :param word:(str) word to guess
     :param lives:(int) number limiting mistakes
     """
-    clrscr()
+    os.system('clear')
     print(word)  # for testing purposes to be removed
     word_set = set(word.casefold())
     guess_set = set()
 
     while lives > -1:
-        clrscr()
+        os.system('clear')
         load_graphic(lives)
         print('\t\tWORD: ', end='')
         for char in word:
@@ -35,22 +36,21 @@ def play(word, lives):
             else:
                 print(char, end='')
 
-        # print()
         if word_set.issubset(guess_set):
-            print('Congratulation! You Guessed Word! No Man will be hang today!')
+            print('\tCongratulation! You Guessed Word! No Man will be hang today!')
             break
         print('\n\t\tLives: ', end='')
         print('@' * lives)
-        letter = input('choose letter: ')
+        letter = input('choose letter: ').casefold()
         if not letter.isalpha():
             incorrect_input("Input must be single letter.")
-        elif letter.casefold() == 'quit':
+        elif letter.casefold() == 'quit':                   #quit and exit should be gone by or
             good_bye(1)
-            clrscr()
+            os.system('clear')
             break
         elif letter.casefold() == 'exit':
             good_bye(1)
-            clrscr()
+            os.system('clear')
             break
         elif len(letter) != 1:
             incorrect_input('Type one latin alphabet letter')
@@ -63,11 +63,11 @@ def play(word, lives):
                 if letter not in word_set:
                     lives -= 1
         if lives == 0:
-            clrscr()
+            os.system('clear')
             load_graphic(0)
             print('\t\tSorry Your Friend is Hanged!')
             sleep(3)
-            clrscr()
+            os.system('clear')
             break
 
 
@@ -90,7 +90,7 @@ def random_word():
 def incorrect_input(message):
     print('Invalid Input.')
     print(message)
-    sleep(2.5)
+    sleep(1.5)
 
 
 def good_bye(sec: int = 3):
@@ -101,9 +101,8 @@ def good_bye(sec: int = 3):
 
 def print_menu():
     """function to print menu"""
-    # bug: invalid input at menu(Hard Medium Easy) moves back to main menu - should stay same menu)
-    # need to open another while loop instead of if statement.
-    clrscr()
+
+    os.system('clear')
     while True:
         choice = input('''
                 Welcome to Hangman Countries & Capitols
@@ -112,9 +111,9 @@ def print_menu():
                 1: Play
                 2: Manual
                 3: Exit
-        ''')
+        ''').casefold()                        # I know it can be a list but see no reason to do so.
         if choice == '1':
-            clrscr()
+            os.system('clear')
             choice2 = input("""
                 Welcome to Hangman Countries & Capitols
                 ***************************************
@@ -124,9 +123,9 @@ def print_menu():
                 3: Easy
                 
                 4: Back
-        """)
+        """).casefold()
             if choice2 == '1':
-                play(random_word(), 3)
+                play(random_word(), 3)  # fun play takes 2 args(word and number of 'lives'
             elif choice2 == '2':
                 play(random_word(), 5)
             elif choice2 == '3':
@@ -142,6 +141,7 @@ def print_menu():
             else:
                 incorrect_input('select number from menu or type quit')
         elif choice == '2':
+            os.system('clear')
             print('\t' + manual)
             input('\t\tpress any key to go back')
             clrscr()
@@ -156,3 +156,4 @@ def print_menu():
             break
         else:
             incorrect_input('select from menu')
+
